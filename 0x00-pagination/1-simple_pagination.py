@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
+"""Simple pagination sample.
+"""
 import csv
 from typing import List, Tuple
 
 
-def index_range(page: int, page_size: int) -> Tuple[int, int]:
+def index_range(page: int, page_size: int) -> tuple:
     """
     Return a tuple of size two containing a start index and an end index
 
@@ -23,6 +25,7 @@ class Server:
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
+        """Initializes a new Server instance."""
         self.__dataset = None
 
     def dataset(self) -> List[List]:
