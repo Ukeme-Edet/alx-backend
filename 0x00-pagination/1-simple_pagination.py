@@ -4,6 +4,20 @@ import math
 from typing import List
 
 
+def index_range(page: int, page_size: int) -> tuple:
+    """
+    Return a tuple of size two containing a start index and an end index
+
+    Args:
+        page: int
+        page_size: int
+
+    Returns:
+        tuple
+    """
+    return ((page - 1) * page_size, page * page_size)
+
+
 class Server:
     """Server class to paginate a database of popular baby names."""
 
@@ -33,24 +47,8 @@ class Server:
         Returns:
             List[List]
         """
-        assert type(page) == int and type(page_size) == int
-        assert page > 0 and page_size > 0
+        assert isinstance(page, int) and page > 0
+        assert isinstance(page_size, int) and page_size > 0
+
         start, end = index_range(page, page_size)
-        data = self.dataset()
-        if start > len(data):
-            return []
-        return data[start:end]
-
-
-def index_range(page: int, page_size: int) -> tuple:
-    """
-    Return a tuple of size two containing a start index and an end index
-
-    Args:
-        page: int
-        page_size: int
-
-    Returns:
-        tuple
-    """
-    return ((page - 1) * page_size, page * page_size)
+        return self.dataset()[start:end]
