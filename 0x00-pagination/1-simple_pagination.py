@@ -35,9 +35,11 @@ class Server:
         """
         assert type(page) == int and type(page_size) == int
         assert page > 0 and page_size > 0
-
         start, end = index_range(page, page_size)
-        return self.dataset()[start:end] if end <= len(self.dataset()) else []
+        data = self.dataset()
+        if start > len(data):
+            return []
+        return data[start:end]
 
 
 def index_range(page: int, page_size: int) -> tuple:
