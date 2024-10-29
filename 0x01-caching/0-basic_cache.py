@@ -6,7 +6,9 @@ from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
-    """ """
+    """
+    Defines the dictionary cache
+    """
 
     def put(self, key, item):
         """
